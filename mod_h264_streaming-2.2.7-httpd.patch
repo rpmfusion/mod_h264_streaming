@@ -1,0 +1,26 @@
+Patch by Robert Scheck <robert@fedoraproject.org> for mod_h264_streaming >= 2.2.7, which
+changes the version requirement of the Apache HTTP server from 2.0.55 to 2.0.39 in order
+to successfully build on Red Hat Enterprise Linux 4 or derivates/downstreams.
+
+--- mod_h264_streaming-2.2.7/configure.ac		2010-01-07 16:06:06.000000000 +0100
++++ mod_h264_streaming-2.2.7/configure.ac.httpd		2011-03-15 14:49:06.000000000 +0100
+@@ -17,7 +17,7 @@
+ LT_INIT
+ AC_CONFIG_MACRO_DIR([m4])
+ 
+-AP_VERSION=2.0.55
++AP_VERSION=2.0.39
+ CHECK_APACHE(,$AP_VERSION,
+     :,:,
+     AC_MSG_ERROR([*** Apache version $AP_VERSION not found!])
+--- mod_h264_streaming-2.2.7/configure			2010-01-07 16:06:15.000000000 +0100
++++ mod_h264_streaming-2.2.7/configure.httpd		2011-03-15 14:49:25.000000000 +0100
+@@ -11724,7 +11724,7 @@
+ 
+ 
+ 
+-AP_VERSION=2.0.55
++AP_VERSION=2.0.39
+ 
+ # Check whether --with-apxs was given.
+ if test "${with_apxs+set}" = set; then
