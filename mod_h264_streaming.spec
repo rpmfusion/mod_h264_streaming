@@ -1,7 +1,7 @@
 Summary:	H264 streaming module for the Apache HTTP Server
 Name:		mod_h264_streaming
 Version:	2.2.7
-Release:	1%{?dist}
+Release:	2%{?dist}
 Group:		System Environment/Daemons
 License:	CC-BY-NC-SA
 URL:		http://h264.code-shop.com/
@@ -51,6 +51,9 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %{_sysconfdir}/httpd/conf.d/h264_streaming.conf
 
 %changelog
+* Thu Feb 09 2012 Nicolas Chauvet <kwizart@gmail.com> - 2.2.7-2
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_17_Mass_Rebuild
+
 * Tue Mar 15 2011 Robert Scheck <robert@fedoraproject.org> 2.2.7-1
 - Upgrade to 2.2.7
 - Initial spec file for Fedora and Red Hat Enterprise Linux
