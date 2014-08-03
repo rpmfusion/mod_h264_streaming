@@ -1,5 +1,6 @@
 %{!?_httpd_apxs: %{expand: %%global _httpd_apxs %%{_sbindir}/apxs}}
-%{!?_httpd_mmn: %{expand: %%global _httpd_mmn %%(cat %{_includedir}/httpd/.mmn || echo missing-httpd-devel)}}
+%{!?_httpd_mmn: %{expand: %%global _httpd_mmn %%(cat %{_includedir}/httpd/.mmn || echo 0-0)}}
+
 # /etc/httpd/conf.d with httpd < 2.4 and defined as /etc/httpd/conf.modules.d with httpd >= 2.4
 %{!?_httpd_confdir:    %{expand: %%global _httpd_confdir    %%{_sysconfdir}/httpd/conf.d}}
 %{!?_httpd_modconfdir: %{expand: %%global _httpd_modconfdir %%{_sysconfdir}/httpd/conf.d}}
@@ -8,7 +9,7 @@
 Summary:	H264 streaming module for the Apache HTTP Server
 Name:		mod_h264_streaming
 Version:	2.2.7
-Release:	3%{?dist}
+Release:	4%{?dist}
 Group:		System Environment/Daemons
 License:	CC-BY-NC-SA
 URL:		http://h264.code-shop.com/
@@ -71,6 +72,10 @@ rm -rf $RPM_BUILD_ROOT
 %endif
 
 %changelog
+* Sun Aug 03 2014 Sérgio Basto <sergio@serjux.com> - 2.2.7-4
+- Rebuild to match with Apache 2.4 version.
+- Update httpd_mmn detection copied from mod_security.spec 
+
 * Sat Nov 17 2012 Robert Scheck <robert@fedoraproject.org> 2.2.7-3
 - Updated spec file to match with Apache 2.4 policy
 
