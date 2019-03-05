@@ -16,6 +16,7 @@ URL:		http://h264.code-shop.com/
 Source0:	http://h264.code-shop.com/download/apache_%{name}-%{version}.tar.gz
 Source1:	h264_streaming.conf
 Patch:		mod_h264_streaming-2.2.7-httpd.patch
+BuildRequires:  gcc-c++
 BuildRequires:	httpd-devel >= 2.0.39
 Requires:	httpd-mmn = %{_httpd_mmn}
 BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
