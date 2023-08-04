@@ -12,14 +12,13 @@ Version:	2.2.7
 Release:	18%{?dist}
 Group:		System Environment/Daemons
 License:	CC-BY-NC-SA
-URL:		http://h264.code-shop.com/
+URL:		https://github.com/code-shop-com/h264
 Source0:	http://h264.code-shop.com/download/apache_%{name}-%{version}.tar.gz
 Source1:	h264_streaming.conf
-Patch:		mod_h264_streaming-2.2.7-httpd.patch
+Patch0:	mod_h264_streaming-2.2.7-httpd.patch
 BuildRequires:  gcc-c++
 BuildRequires:	httpd-devel >= 2.0.39
 Requires:	httpd-mmn = %{_httpd_mmn}
-BuildRoot:	%{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
 
 %description
 H264 streaming module enable viewers to immediately jump to any part of
@@ -38,15 +37,14 @@ http://h264.code-shop.com/trac/wiki/Mod-H264-Streaming-License-Version2
 
 %prep
 %setup -q
-%patch -p1 -b .httpd
+%patch -P0 -p1 -b .httpd
 
 %build
 %configure
-make %{?_smp_mflags}
+%make_install
 
 %install
-rm -rf $RPM_BUILD_ROOT
-make DESTDIR=$RPM_BUILD_ROOT install
+%make_build
 
 # Install Apache configuration file
 %if "%{_httpd_modconfdir}" == "%{_httpd_confdir}"
@@ -61,11 +59,7 @@ install -D -p -m 644 10-h264_streaming.conf $RPM_BUILD_ROOT%{_httpd_modconfdir}/
 install -D -p -m 644 h264_streaming.conf $RPM_BUILD_ROOT%{_httpd_confdir}/h264_streaming.conf
 %endif
 
-%clean
-rm -rf $RPM_BUILD_ROOT
-
 %files
-%defattr(-,root,root,-)
 %{_httpd_moddir}/%{name}.so
 %config(noreplace) %{_httpd_confdir}/h264_streaming.conf
 %if "%{_httpd_modconfdir}" != "%{_httpd_confdir}"
@@ -75,6 +69,7 @@ rm -rf $RPM_BUILD_ROOT
 %changelog
 * Thu Aug 03 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.2.7-18
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
+- Fix build and some cleanups
 
 * Mon Aug 08 2022 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.2.7-17
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_37_Mass_Rebuild and ffmpeg
