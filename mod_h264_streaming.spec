@@ -41,10 +41,10 @@ http://h264.code-shop.com/trac/wiki/Mod-H264-Streaming-License-Version2
 
 %build
 %configure
-%make_install
+%make_build
 
 %install
-%make_build
+%make_install
 
 # Install Apache configuration file
 %if "%{_httpd_modconfdir}" == "%{_httpd_confdir}"
