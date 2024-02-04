@@ -9,7 +9,7 @@
 Summary:	H264 streaming module for the Apache HTTP Server
 Name:		mod_h264_streaming
 Version:	2.2.7
-Release:	18%{?dist}
+Release:	19%{?dist}
 Group:		System Environment/Daemons
 License:	CC-BY-NC-SA
 URL:		https://github.com/code-shop-com/h264
@@ -67,6 +67,9 @@ install -D -p -m 644 h264_streaming.conf $RPM_BUILD_ROOT%{_httpd_confdir}/h264_s
 %endif
 
 %changelog
+* Sun Feb 04 2024 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.2.7-19
+- Rebuilt for https://fedoraproject.org/wiki/Fedora_40_Mass_Rebuild
+
 * Thu Aug 03 2023 RPM Fusion Release Engineering <sergiomb@rpmfusion.org> - 2.2.7-18
 - Rebuilt for https://fedoraproject.org/wiki/Fedora_39_Mass_Rebuild
 - Fix build and some cleanups
